@@ -91,6 +91,10 @@
 			completionHandler(savedRecords[0], nil);
 		}
 	};
+    if (self.isPublic) {
+        // cloudkit doesn't support atomic operations on the public database
+        modOp.atomic = NO;
+    }
 	[self addOperation:modOp];
 }
 
